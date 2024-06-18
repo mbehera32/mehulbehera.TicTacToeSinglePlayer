@@ -101,7 +101,9 @@ function App() {
 
       //if won - ADD STOP PLAYERS FROM WINNING
       if (winningOutcome === "WIN") {
-        document.getElementById("winner_modal")!.showModal();
+        (
+          document.getElementById("winner_modal")! as HTMLDialogElement
+        ).showModal();
         setProgress(1);
         setWinner(winningPiece + "    WINS");
         if (winningPiece === "X") {
@@ -110,7 +112,9 @@ function App() {
           setOWins(numOWins + 1);
         }
       } else if (winningOutcome === "TIE") {
-        document.getElementById("winner_modal")!.showModal();
+        (
+          document.getElementById("winner_modal")! as HTMLDialogElement
+        ).showModal();
         setProgress(1);
         setWinner("TIE");
         setTies(numTies + 1);
@@ -303,7 +307,9 @@ function App() {
                 }
                 id={index.toString()}
                 disabled={hasWon}
-                onClick={(e) => handlePress(e)}
+                onClick={(e) => {
+                  handlePress(e), console.log(tile);
+                }}
               >
                 {board[index]}
               </button>
